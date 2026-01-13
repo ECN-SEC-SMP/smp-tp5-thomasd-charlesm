@@ -49,7 +49,7 @@ void afficherPersonne(personne* p) {
     if (p != nullptr) {
         cout << "Nom: " << p->nom << ", Prenom: " << p->prenom << endl;
         cout << "Annee de naissance: " << p->annee_naissance << endl;
-        cout << "Sexe: " << (p->sexe == 1 ? "Garcon" : "Fille") << endl;
+        cout << "Sexe : " << (p->sexe == 1 ? "Garcon" : "Fille") << endl;
         if (p->conjoint != nullptr) {
             if (p->conjoint->sexe == 1) {
                 cout << "Epoux : " << p->conjoint->prenom << endl;
@@ -71,6 +71,34 @@ void afficherPersonne(personne* p) {
         }
         cout << endl;
     }
+}
+
+/**
+ * @brief Vérifie si deux personnes sont frères ou sœurs
+ * 
+ * @param a 
+ * @param b 
+ * @return true 
+ * @return false 
+ */
+bool frerresoeur(personne* a,personne* b)
+{
+    /* 
+    Vérification des conditions pour être frères ou sœurs
+        - Les deux personnes ne doivent pas être nulles.
+        - Les deux personnes doivent avoir un père et une mère définis.
+        - Les pères des deux personnes doivent être les mêmes.
+        - Les mères des deux personnes doivent être les mêmes.
+    */
+    bool condition =   (a != nullptr &&
+                        b != nullptr &&
+                        a->pere != nullptr &&
+                        a->mere != nullptr &&
+                        b->pere != nullptr &&
+                        b->mere != nullptr && 
+                        a->pere == b->pere &&
+                        a->mere == a->mere);
+    return condition;
 }
 
 /**
@@ -113,4 +141,26 @@ bool verifierAncetres(personne* p, personne* ancetre) {
         }
     }
     return trouve;
+}
+/**  dd*/
+int generation(personne* p) // d apres le TD 
+
+{
+    if (p != nullptr)
+    {
+        int hpere = generation(p->pere);
+        int hmere = generation(p->mere); 
+        return 1 + max(hpere,hmere);
+    }
+    else
+    {
+        return 0;
+    }
+}
+
+bool testmariage(personne* a, personne* b)
+{
+    condtion = (
+
+    );
 }
