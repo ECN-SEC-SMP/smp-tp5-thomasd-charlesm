@@ -77,6 +77,19 @@ void afficherPersonne(personne* p) {
  * @return true 
  * @return false 
  */
+bool frerresoeur(personne* a,personne* b)
+{
+    bool condition =   (a != nullptr &&
+                        b != nullptr &&
+                        a->pere != nullptr &&
+                        a->mere != nullptr &&
+                        b->pere != nullptr &&
+                        b->mere != nullptr && 
+                        a->pere == b->pere &&
+                        a->mere == a->mere);
+    return condition;
+}
+
 bool verifierAncetres(personne* p, personne* ancetre) {
     if (p == nullptr || ancetre == nullptr) {
         cout << "Personne ou ancetre est nul." << endl;
@@ -110,3 +123,4 @@ bool verifierAncetres(personne* p, personne* ancetre) {
     }
     return trouve;
 }
+
