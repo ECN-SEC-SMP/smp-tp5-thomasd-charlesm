@@ -13,13 +13,13 @@ using namespace std;
  * @param conjoint 
  * @return personne* 
  */
-personne* creerPersonne(string      nom, 
-                        string      prenom, 
-                        int         annee_naissance, 
-                        int         sexe,
-                        personne*   conjoint, 
-                        personne*   pere, 
-                        personne*   mere)
+personne* creerPersonne(string nom, 
+                        string prenom, 
+                        int annee_naissance, 
+                        int sexe,
+                        personne* conjoint, 
+                        personne* pere, 
+                        personne* mere) 
 {
     personne* p = new personne;
     
@@ -87,7 +87,7 @@ void afficherPersonne(personne* p) {
  * @return true 
  * @return false 
  */
-bool frerresoeur(personne* a,personne* b)
+bool frereEtSoeur(personne* a,personne* b)
 {
     /* 
     Vérification des conditions pour être frères ou sœurs
@@ -149,7 +149,9 @@ bool verifierAncetres(personne* p, personne* ancetre) {
     return trouve;
 }
 /**
- * @brief Calcul le nombre de générations précédant une personne
+ * @brief 
+ * Calcule le nombre de générations à partir d'une personne
+ * en remontant jusqu'aux ancêtres les plus éloignés.    
  * 
  * @param p 
  * @return int 
@@ -169,9 +171,19 @@ int generation(personne* p) // d apres le TD
     }
 }
 
+/**
+ * @brief Vérifie si deux personnes peuvent se marier
+ * 
+ * @param a 
+ * @param b 
+ * @return true 
+ * @return false 
+ */
 bool testmariage(personne* a, personne* b)
 {
-    condtion = (
-
+    bool condtion = (verifierAncetres(a,b) &&
+                    verifierAncetres(b,a)  &&
+                    !frereEtSoeur(a,b)
     );
+    return condtion;
 }
