@@ -13,8 +13,14 @@ using namespace std;
  * @param conjoint 
  * @return personne* 
  */
-personne* creerPersonne(string nom, string prenom, int annee_naissance, int sexe,
-                        personne* conjoint, personne* pere, personne* mere) {
+personne* creerPersonne(string      nom, 
+                        string      prenom, 
+                        int         annee_naissance, 
+                        int         sexe,
+                        personne*   conjoint, 
+                        personne*   pere, 
+                        personne*   mere)
+{
     personne* p = new personne;
     
     p->nom = nom;
@@ -142,7 +148,12 @@ bool verifierAncetres(personne* p, personne* ancetre) {
     }
     return trouve;
 }
-/**  dd*/
+/**
+ * @brief Calcul le nombre de générations précédant une personne
+ * 
+ * @param p 
+ * @return int 
+ */
 int generation(personne* p) // d apres le TD 
 
 {
