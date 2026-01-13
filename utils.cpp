@@ -13,7 +13,8 @@ using namespace std;
  * @param conjoint 
  * @return personne* 
  */
-personne* creerPersonne(char nom, char prenom, int annee_naissance, int sexe, personne* conjoint) {
+personne* creerPersonne(char nom, char prenom, int annee_naissance, int sexe,
+                        personne* conjoint, personne* pere, personne* mere) {
     personne* p = new personne;
     
     p->nom = nom; 
@@ -54,6 +55,16 @@ void afficherPersonne(personne* p) {
             }
         } else {
             cout << "Conjoint: Aucun" << endl;
+        }
+        if (p->pere != nullptr) {
+            cout << "Pere : " << p->pere->prenom << endl;
+        } else {
+            cout << "Pere : Inconnu" << endl;
+        }
+        if (p->mere != nullptr) {
+            cout << "Mere : " << p->mere->prenom << endl;
+        } else {
+            cout << "Mere : Inconnue" << endl;
         }
     }
 }
