@@ -8,3 +8,10 @@ personne* creerPersonne() {
     p->annee_naissance = 1990; // Placeholder for birth year
     p->sexe = 1; // Placeholder
 }
+
+void mariage(personne* a, personne* b) {
+    if (a != nullptr && b != nullptr) {
+        a->conjoint = b;
+        b->conjoint = a;
+    }
+}
