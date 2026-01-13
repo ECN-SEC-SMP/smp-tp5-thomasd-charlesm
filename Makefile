@@ -1,5 +1,5 @@
-exec.out : main.o utils.o
-	g++ -o exec.out main.o utils.o
+exec : main.o utils.o
+	g++ -o exec main.o utils.o
 
 main.o : main.cpp
 	g++ -c main.cpp
