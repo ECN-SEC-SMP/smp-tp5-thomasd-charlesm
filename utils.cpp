@@ -68,3 +68,45 @@ void afficherPersonne(personne* p) {
         }
     }
 }
+
+/**
+ * @brief Vérifie si une personne est un ancêtre d'une autre personne
+ * 
+ * @param p 
+ * @param ancetre 
+ * @return true 
+ * @return false 
+ */
+bool verifierAncetres(personne* p, personne* ancetre) {
+    if (p == nullptr || ancetre == nullptr) {
+        cout << "Personne ou ancetre est nul." << endl;
+        return;
+    }
+
+    if (p == ancetre) {
+        cout << "La personne est son propre ancetre." << endl;
+        return;
+    }
+
+    bool trouve = false;
+
+    // Vérification récursive des ancêtres
+    // On commence par chercher l'ancêtre du côté du père
+    if (p->pere != nullptr) {
+        if (p->pere == ancetre) {
+            trouve = true;
+        } else {
+            trouve = verifierAncetres(p->pere, ancetre);
+        }
+    }
+
+    // Si pas trouvé du côté du père, on cherche du côté de la mère
+    if (!trouve && p->mere != nullptr) {
+        if (p->mere == ancetre) {
+            trouve = true;
+        } else {
+            trouve = verifierAncetres(p->mere, ancetre);
+        }
+    }
+    return trouve;
+}

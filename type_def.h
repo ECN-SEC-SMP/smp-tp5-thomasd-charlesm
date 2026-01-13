@@ -1,4 +1,6 @@
-struct personne             
+#pragma once
+
+struct personne
 {
     char nom;
     char prenom;

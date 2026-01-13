@@ -6,3 +6,5 @@ personne* creerPersonne(char nom, char prenom, int annee_naissance, int sexe,
 void mariage(personne* a, personne* b);
 
 void afficherPersonne(personne* p);
+
+bool verifierAncetres(personne* p, personne* ancetre);
