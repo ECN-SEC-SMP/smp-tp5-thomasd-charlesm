@@ -1,4 +1,7 @@
 #include "type_def.h"
-void creerPersonne();
+
+personne *  creerPersonne(char nom, char prenom, int annee_naissance, int sexe, personne* conjoint);
+
 void mariage(personne* a, personne* b);
 
+void afficherPersonne(personne* p);
