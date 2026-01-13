@@ -1,4 +1,6 @@
-struct personne             
+#pragma once
+
+struct personne
 {
     char nom;
     char prenom;
@@ -8,5 +10,3 @@ struct personne
     personne* pere;
     personne* mere;
 };
-
-
