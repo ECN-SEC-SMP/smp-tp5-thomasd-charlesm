@@ -1,7 +1,7 @@
 struct personne             
 {
     char nom;
-    char nom;
+    char prenom;
     int annee_naissance; 
     int sexe; // 1: garcon, 2: fille
     personne* conjoint;
