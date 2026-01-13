@@ -187,3 +187,23 @@ bool testmariage(personne* a, personne* b)
     );
     return condtion;
 }
+
+/**
+ * @brief Calcule la taille de l'arbre généalogique d'une personne
+ * 
+ * @param p 
+ * @return int 
+ */
+int tailleArbre(personne* p)
+{
+    if (p != nullptr)
+    {
+        int taillePere = tailleArbre(p->pere);
+        int tailleMere = tailleArbre(p->mere);
+        return 1 + taillePere + tailleMere;
+    }
+    else
+    {
+        return 0;
+    }
+}

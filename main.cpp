@@ -9,6 +9,7 @@ void testMariage();
 void testAncetre ();
 void testGeneration();
 void testFrereSoeur();
+void testTailleArbre();
 
 int main() {
     testAfficherPersonne();
@@ -16,6 +17,7 @@ int main() {
     testAncetre ();
     testGeneration();
     testFrereSoeur();
+    testTailleArbre();
     return 0;
 }
 
@@ -151,6 +153,45 @@ void testGeneration() {
 
     delete grandPere;
     delete grandMere;
+    delete pere;
+    delete enfant;
+}
+
+void testTailleArbre() {
+    cout << "-----------------------------------" << endl;
+    cout << "Test Taille Arbre:" << endl;
+    cout << endl;
+
+    // Création d'une famille avec plusieurs générations
+    personne* GrandPere1 = creerPersonne("Grand" , "Pere1"   , 1940, 1, EMPTY, EMPTY     , EMPTY     );
+    personne* GrandMere1 = creerPersonne("Grand" , "Mere1"   , 1945, 2, EMPTY, EMPTY     , EMPTY     );
+    personne* GrandPere2 = creerPersonne("Grand" , "Pere2"   , 1940, 1, EMPTY, EMPTY     , EMPTY     );
+    personne* GrandMere2 = creerPersonne("Grand" , "Mere2"   , 1945, 2, EMPTY, EMPTY     , EMPTY     );
+    personne* mere       = creerPersonne("Maman" , "Maman"   , 1970, 2, EMPTY, GrandPere1, GrandMere1);
+    personne* pere       = creerPersonne("Papa"  , "Papa"    , 1970, 1, EMPTY, GrandPere2, GrandMere2);
+    personne* enfant     = creerPersonne("Enfant", "Enfant"  , 2000, 1, EMPTY, pere      , mere      );
+
+    /* Si on veut compter la famille du conjoint, on peut créer un nouvelle famille et marier les deux enfants
+       Mais il faut calculer l'arbre généalogique à partir du conjoint aussi.
+       On ne peut pas le faire dans la fonction tailleArbre car cela créerait des boucles infinies. */
+
+    // Effectuer les mariages
+    // mariage(pere, mere);
+    // mariage(GrandMere1, GrandPere1);
+    // mariage(GrandMere2, GrandPere2);
+
+    // Tests de la fonction tailleArbre
+    int taille = tailleArbre(enfant);
+    
+    // Affichage des résultats
+    cout << "Taille de l'arbre à partir de l'enfant : " << tailleArbre(enfant) << " (attendu: 7)" << endl;
+    cout << "Taille de l'arbre à partir du père     : " << tailleArbre(pere) << " (attendu: 3)" << endl;
+
+    delete GrandPere1;
+    delete GrandMere1;
+    delete GrandPere2;
+    delete GrandMere2;
+    delete mere;
     delete pere;
     delete enfant;
 }
