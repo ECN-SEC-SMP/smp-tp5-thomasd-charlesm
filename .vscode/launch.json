@@ -1,13 +1,14 @@
 {
+    "version": "2.0.0",
     "configurations": [
         {
             "name": "(gdb) Lancer",
             "type": "cppdbg",
             "request": "launch",
-            "program": "entrer le nom du programme, par exemple ${workspaceFolder}/a.out",
+            "program": "${workspaceFolder}/exec",
             "args": [],
             "stopAtEntry": false,
-            "cwd": "${fileDirname}",
+            "cwd": "${workspacefolder}",
             "environment": [],
             "externalConsole": false,
             "MIMode": "gdb",
@@ -25,31 +26,25 @@
             ]
         },
         {
-            "name": "C/C++: g++-13 Générer et déboguer le fichier actif",
+            "name": "C/C++: g++-13 build & debug",
             "type": "cppdbg",
             "request": "launch",
-            "program": "${fileDirname}/${fileBasenameNoExtension}",
+            "program": "${workspacefolder}/exec",
             "args": [],
             "stopAtEntry": false,
-            "cwd": "${fileDirname}",
+            "cwd": "${workspacefolder}",
             "environment": [],
             "externalConsole": false,
             "MIMode": "gdb",
+            "miDebuggerPath": "/usr/bin/gdb",
+            "preLaunchTask": "C/C++: g++-13 générer le fichier actif",
             "setupCommands": [
                 {
-                    "description": "Activer l'impression en mode Pretty pour gdb",
+                    "description": "Enable pretty-printing",
                     "text": "-enable-pretty-printing",
                     "ignoreFailures": true
-                },
-                {
-                    "description": "Définir la version désassemblage sur Intel",
-                    "text": "-gdb-set disassembly-flavor intel",
-                    "ignoreFailures": true
                 }
-            ],
-            "preLaunchTask": "C/C++: g++-13 générer le fichier actif",
-            "miDebuggerPath": "/usr/bin/gdb"
+            ]
         }
-    ],
-    "version": "2.0.0"
+    ]
 }

@@ -9,10 +9,10 @@
                 "-g",
                 "${file}",
                 "-o",
-                "${fileDirname}/${fileBasenameNoExtension}"
+                "${workspacefolder}/exec"
             ],
             "options": {
-                "cwd": "${fileDirname}"
+                "cwd": "${workspacefolder}"
             },
             "problemMatcher": [
                 "$gcc"

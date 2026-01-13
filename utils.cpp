@@ -13,15 +13,18 @@ using namespace std;
  * @param conjoint 
  * @return personne* 
  */
-personne* creerPersonne(char nom, char prenom, int annee_naissance, int sexe,
+personne* creerPersonne(string nom, string prenom, int annee_naissance, int sexe,
                         personne* conjoint, personne* pere, personne* mere) {
     personne* p = new personne;
     
-    p->nom = nom; 
+    p->nom = nom;
     p->prenom = prenom; 
     p->annee_naissance = annee_naissance; 
-    p->sexe = sexe; 
+    p->sexe = sexe;
     p->conjoint = conjoint;
+    p->pere = pere;
+    p->mere = mere;
+    return p;
 }
 
 /**
@@ -45,8 +48,8 @@ void mariage(personne* a, personne* b) {
 void afficherPersonne(personne* p) {
     if (p != nullptr) {
         cout << "Nom: " << p->nom << ", Prenom: " << p->prenom << endl;
-        cout << ", Annee de naissance: " << p->annee_naissance << endl;
-        cout << ", Sexe: " << (p->sexe == 1 ? "Garcon" : "Fille") << endl;
+        cout << "Annee de naissance: " << p->annee_naissance << endl;
+        cout << "Sexe: " << (p->sexe == 1 ? "Garcon" : "Fille") << endl;
         if (p->conjoint != nullptr) {
             if (p->conjoint->sexe == 1) {
                 cout << "Epoux : " << p->conjoint->prenom << endl;
@@ -66,6 +69,7 @@ void afficherPersonne(personne* p) {
         } else {
             cout << "Mere : Inconnue" << endl;
         }
+        cout << endl;
     }
 }
 
@@ -77,15 +81,28 @@ void afficherPersonne(personne* p) {
  * @return true 
  * @return false 
  */
+bool frerresoeur(personne* a,personne* b)
+{
+    bool condition =   (a != nullptr &&
+                        b != nullptr &&
+                        a->pere != nullptr &&
+                        a->mere != nullptr &&
+                        b->pere != nullptr &&
+                        b->mere != nullptr && 
+                        a->pere == b->pere &&
+                        a->mere == a->mere);
+    return condition;
+}
+
 bool verifierAncetres(personne* p, personne* ancetre) {
     if (p == nullptr || ancetre == nullptr) {
         cout << "Personne ou ancetre est nul." << endl;
-        return;
+        return false;
     }
 
     if (p == ancetre) {
         cout << "La personne est son propre ancetre." << endl;
-        return;
+        return false;
     }
 
     bool trouve = false;
@@ -110,3 +127,4 @@ bool verifierAncetres(personne* p, personne* ancetre) {
     }
     return trouve;
 }
+

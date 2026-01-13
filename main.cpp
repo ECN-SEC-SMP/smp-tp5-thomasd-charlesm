@@ -3,11 +3,10 @@
 
 int main() {
     // Création de deux personnes
-    personne* alice;
-    personne* bob = creerPersonne('Bob', 'Olivier', 1988, 1, alice, nullptr, nullptr);
-    personne* charles = creerPersonne('Charles', 'Olivier', 2010, 1, nullptr, bob, alice);
+    personne* alice     = creerPersonne("Alice", "Marie", 1990, 2, nullptr, nullptr, nullptr);
+    personne* bob       = creerPersonne("Bob", "Olivier", 1988, 1, nullptr, nullptr, nullptr);
+    personne* charles   = creerPersonne("Charles", "Olivier", 2010, 1, nullptr, bob, alice);
 
-    alice = creerPersonne('Alice', 'Marie', 1990, 2, bob, nullptr, nullptr);
     // Effectuer un mariage entre Alice et Bob
     mariage(alice, bob);
 
