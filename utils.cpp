@@ -142,4 +142,25 @@ bool verifierAncetres(personne* p, personne* ancetre) {
     }
     return trouve;
 }
+/**  dd*/
+int generation(personne* p) // d apres le TD 
 
+{
+    if (p != nullptr)
+    {
+        int hpere = generation(p->pere);
+        int hmere = generation(p->mere); 
+        return 1 + max(hpere,hmere);
+    }
+    else
+    {
+        return 0;
+    }
+}
+
+bool testmariage(personne* a, personne* b)
+{
+    condtion = (
+
+    );
+}
