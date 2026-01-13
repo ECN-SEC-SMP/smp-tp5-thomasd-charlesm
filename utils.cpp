@@ -166,3 +166,4 @@ bool testmariage(personne* a, personne* b)
     );
     return condtion;
 }
+
