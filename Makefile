@@ -9,3 +9,4 @@ utils.o : utils.cpp
 
 clean :
 	rm -f *.o 
+	rm -f exec
