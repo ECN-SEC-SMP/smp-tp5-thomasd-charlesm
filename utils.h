@@ -20,3 +20,5 @@ bool frereEtSoeur(personne* a,personne* b);
 int generation(personne* p);
 
 bool testmariage(personne* a, personne* b);
+
+int tailleArbre(personne* p);
