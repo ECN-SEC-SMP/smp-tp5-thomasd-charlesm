@@ -160,8 +160,9 @@ int generation(personne* p) // d apres le TD
 
 bool testmariage(personne* a, personne* b)
 {
-    condtion = (verifierAncetres(a,b) &&
-                verifierAncetres(b,a) &&
-
+    bool condtion = (verifierAncetres(a,b) &&
+                    verifierAncetres(b,a) &&
+                    !frerresoeur(a,b)
     );
+    return condtion;
 }
