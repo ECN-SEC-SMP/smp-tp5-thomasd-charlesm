@@ -142,7 +142,12 @@ bool verifierAncetres(personne* p, personne* ancetre) {
     }
     return trouve;
 }
-/**  dd*/
+/**
+ * @brief Calcule le nombre de générations précédant une personne
+ * 
+ * @param p 
+ * @return int 
+ */
 int generation(personne* p) // d apres le TD 
 
 {
@@ -158,6 +163,14 @@ int generation(personne* p) // d apres le TD
     }
 }
 
+/**
+ * @brief Vérifie si deux personnes peuvent se marier
+ * 
+ * @param a 
+ * @param b 
+ * @return true 
+ * @return false 
+ */
 bool testmariage(personne* a, personne* b)
 {
     bool condtion = (verifierAncetres(a,b) &&
