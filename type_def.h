@@ -8,5 +8,8 @@ struct personne
     int sexe; // 1: garcon, 2: fille
     personne* conjoint;
     personne* pere;
-    personne* mere;
+    personne* mere;//test
+    
 };
+
+
