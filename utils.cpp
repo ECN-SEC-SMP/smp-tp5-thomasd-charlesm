@@ -49,7 +49,7 @@ void afficherPersonne(personne* p) {
     if (p != nullptr) {
         cout << "Nom: " << p->nom << ", Prenom: " << p->prenom << endl;
         cout << "Annee de naissance: " << p->annee_naissance << endl;
-        cout << "Sexe: " << (p->sexe == 1 ? "Garcon" : "Fille") << endl;
+        cout << "Sexe : " << (p->sexe == 1 ? "Garcon" : "Fille") << endl;
         if (p->conjoint != nullptr) {
             if (p->conjoint->sexe == 1) {
                 cout << "Epoux : " << p->conjoint->prenom << endl;
@@ -74,15 +74,22 @@ void afficherPersonne(personne* p) {
 }
 
 /**
- * @brief Vérifie si une personne est un ancêtre d'une autre personne
+ * @brief Vérifie si deux personnes sont frères ou sœurs
  * 
- * @param p 
- * @param ancetre 
+ * @param a 
+ * @param b 
  * @return true 
  * @return false 
  */
 bool frerresoeur(personne* a,personne* b)
 {
+    /* 
+    Vérification des conditions pour être frères ou sœurs
+        - Les deux personnes ne doivent pas être nulles.
+        - Les deux personnes doivent avoir un père et une mère définis.
+        - Les pères des deux personnes doivent être les mêmes.
+        - Les mères des deux personnes doivent être les mêmes.
+    */
     bool condition =   (a != nullptr &&
                         b != nullptr &&
                         a->pere != nullptr &&
@@ -94,6 +101,14 @@ bool frerresoeur(personne* a,personne* b)
     return condition;
 }
 
+/**
+ * @brief Vérifie si une personne est un ancêtre d'une autre personne
+ * 
+ * @param p 
+ * @param ancetre 
+ * @return true 
+ * @return false 
+ */
 bool verifierAncetres(personne* p, personne* ancetre) {
     if (p == nullptr || ancetre == nullptr) {
         cout << "Personne ou ancetre est nul." << endl;
