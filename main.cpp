@@ -5,19 +5,21 @@
 #define EMPTY nullptr
 
 void testAfficherPersonne();
-void testMariage();
+void testVerifierMariage();
 void testAncetre ();
 void testGeneration();
 void testFrereSoeur();
 void testTailleArbre();
+void testMariagePossible();
 
 int main() {
     testAfficherPersonne();
-    testMariage();
+    testVerifierMariage();
     testAncetre ();
     testGeneration();
     testFrereSoeur();
     testTailleArbre();
+    testMariagePossible();
     return 0;
 }
 
@@ -25,7 +27,7 @@ int main() {
 
 void testAfficherPersonne() {
     cout << "-----------------------------------" << endl;
-    cout << "Test Afficher Personne:" << endl;
+    cout << "testAfficherPersonne & creerPersonne:" << endl;
     cout << endl;
 
     // Création d'une personne
@@ -37,9 +39,9 @@ void testAfficherPersonne() {
     delete p;
 }
 
-void testMariage() {
+void testVerifierMariage() {
     cout << "-----------------------------------" << endl;
-    cout << "Test Mariage:" << endl;
+    cout << "testVerifierMariage:" << endl;
     cout << endl;
 
     // Création de deux personnes
@@ -60,19 +62,18 @@ void testMariage() {
 
 void testAncetre (){
     cout << "-----------------------------------" << endl;
-    cout << "Test Ancetre:" << endl;
+    cout << "testAncetre:" << endl;
     cout << endl;
 
     // Création de l'arbre généalogique + 1 inconnu
-    personne* inconnu = creerPersonne("Inconnu", "Inconnu", 1900, 1, EMPTY, EMPTY, EMPTY);
-    personne* grandPere1 = creerPersonne("Grand", "Pere 1", 1950, 1, EMPTY, EMPTY, EMPTY);
-    personne* grandPere2 = creerPersonne("Grand", "Pere 2", 1950, 1, EMPTY, EMPTY, EMPTY);
-    personne* grandMere1 = creerPersonne("Grand", "Mere 1", 1950, 2, EMPTY, EMPTY, EMPTY);
-    personne* grandMere2 = creerPersonne("Grand", "Mere 2", 1950, 2, EMPTY, EMPTY, EMPTY);
-    personne* pere = creerPersonne("Super", "Papa", 1975, 2, EMPTY, grandPere1, grandMere1);
-    personne* mere = creerPersonne("Super", "Maman", 1975, 2, EMPTY, grandPere2, grandMere2);
-    personne* enfant = creerPersonne("Petit", "Enfant", 2000, 1, EMPTY, pere, EMPTY);
-
+    personne* inconnu    = creerPersonne("Inconnu"  , "Inconnu" , 1900, 1, EMPTY, EMPTY     , EMPTY     );
+    personne* grandPere1 = creerPersonne("Grand"    , "Pere 1"  , 1950, 1, EMPTY, EMPTY     , EMPTY     );
+    personne* grandPere2 = creerPersonne("Grand"    , "Pere 2"  , 1950, 1, EMPTY, EMPTY     , EMPTY     );
+    personne* grandMere1 = creerPersonne("Grand"    , "Mere 1"  , 1950, 2, EMPTY, EMPTY     , EMPTY     );
+    personne* grandMere2 = creerPersonne("Grand"    , "Mere 2"  , 1950, 2, EMPTY, EMPTY     , EMPTY     );
+    personne* pere       = creerPersonne("Super"    , "Papa"    , 1975, 2, EMPTY, grandPere1, grandMere1);
+    personne* mere       = creerPersonne("Super"    , "Maman"   , 1975, 2, EMPTY, grandPere2, grandMere2);
+    personne* enfant     = creerPersonne("Petit"    , "Enfant"  , 2000, 1, EMPTY, pere      , EMPTY     );
     // Test de la fonction verifierAncetres
     if (verifierAncetres(enfant, grandPere1)) {
         cout << "Test Ancetre (grandPere1) : Succes (attendu)" << endl;
@@ -98,15 +99,15 @@ void testAncetre (){
 
 void testFrereSoeur() {
     cout << "-----------------------------------" << endl;
-    cout << "Test Frere et Soeur:" << endl;
+    cout << "testFrereSoeur:" << endl;
     cout << endl;
 
     // Création de deux frères et sœurs leurs parents et un cousin
-    personne* pere = creerPersonne("Parent", "Pere", 1970, 1, EMPTY, EMPTY, EMPTY);
-    personne* mere = creerPersonne("Parent", "Mere", 1970, 2, EMPTY, EMPTY, EMPTY);
-    personne* frere = creerPersonne("Enfant", "Frere", 2000, 1, EMPTY, pere, mere);
-    personne* soeur = creerPersonne("Enfant", "Soeur", 2002, 2, EMPTY, pere, mere);
-    personne* cousin = creerPersonne("Cousin", "Cousin", 2001, 1, EMPTY, EMPTY, EMPTY);
+    personne* pere      = creerPersonne("Parent", "Pere"    , 1970, 1, EMPTY, EMPTY , EMPTY );
+    personne* mere      = creerPersonne("Parent", "Mere"    , 1970, 2, EMPTY, EMPTY , EMPTY );
+    personne* frere     = creerPersonne("Enfant", "Frere"   , 2000, 1, EMPTY, pere  , mere  );
+    personne* soeur     = creerPersonne("Enfant", "Soeur"   , 2002, 2, EMPTY, pere  , mere  );
+    personne* cousin    = creerPersonne("Cousin", "Cousin"  , 2001, 1, EMPTY, EMPTY , EMPTY );
 
     // Tests de la fonction frereEtSoeur
     if (frereEtSoeur(frere, soeur)){
@@ -114,7 +115,7 @@ void testFrereSoeur() {
     } else {
         cout << "Test Frere et Soeur (frere, soeur): Echec (faux)" << endl;
     }
-
+    cout << endl;
     if (frereEtSoeur(frere, cousin)){
         cout << "Test Frere et Soeur (frere, cousin): Succes (faux)" << endl;
     } else {
@@ -130,15 +131,15 @@ void testFrereSoeur() {
 
 void testGeneration() {
     cout << "-----------------------------------" << endl;
-    cout << "Test Generation:" << endl;
+    cout << "testGeneration:" << endl;
     cout << endl;
 
     // Création d'une famille avec plusieurs générations
-    personne* arriereGrandPere = creerPersonne("ArriereGrand", "Pere", 1920, 1, EMPTY, EMPTY, EMPTY);
-    personne* grandPere = creerPersonne("Grand", "Pere", 1940, 1, EMPTY, EMPTY, EMPTY);
-    personne* grandMere = creerPersonne("Grand", "Mere", 1945, 2, EMPTY, arriereGrandPere, EMPTY);
-    personne* pere = creerPersonne("Papa", "Papa", 1970, 1, EMPTY, grandPere, grandMere);
-    personne* enfant = creerPersonne("Enfant", "Enfant", 2000, 1, EMPTY, pere, EMPTY);
+    personne* arriereGrandPere  = creerPersonne("ArriereGrand", "Pere"  , 1920, 1, EMPTY, EMPTY           , EMPTY    );
+    personne* grandPere         = creerPersonne("Grand"       , "Pere"  , 1940, 1, EMPTY, EMPTY           , EMPTY    );
+    personne* grandMere         = creerPersonne("Grand"       , "Mere"  , 1945, 2, EMPTY, arriereGrandPere, EMPTY    );
+    personne* pere              = creerPersonne("Papa"        , "Papa"  , 1970, 1, EMPTY, grandPere       , grandMere);
+    personne* enfant            = creerPersonne("Enfant"      , "Enfant", 2000, 1, EMPTY, pere            , EMPTY    );
 
     // Tests de la fonction generation
     int genEnfant = generation(enfant);
@@ -146,9 +147,9 @@ void testGeneration() {
     int genGrandPere = generation(grandPere);
     
     // Affichage des résultats
-    cout << "Generation de l'enfant: " << genEnfant << " (attendu: 4)" << endl;
-    cout << "Generation du pere: " << genPere << " (attendu: 3)" << endl;
-    cout << "Generation du grand-pere: " << genGrandPere << " (attendu: 1)" << endl;
+    cout << "Generation de l'enfant     : " << genEnfant << " (attendu: 4)" << endl;
+    cout << "Generation du pere         : " << genPere << " (attendu: 3)" << endl;
+    cout << "Generation du grand-pere   : " << genGrandPere << " (attendu: 1)" << endl;
     cout << "Generation de la grand-mere: " << generation(grandMere) << " (attendu: 2)" << endl;
 
     delete grandPere;
@@ -159,7 +160,7 @@ void testGeneration() {
 
 void testTailleArbre() {
     cout << "-----------------------------------" << endl;
-    cout << "Test Taille Arbre:" << endl;
+    cout << "testTailleArbre:" << endl;
     cout << endl;
 
     // Création d'une famille avec plusieurs générations
@@ -194,4 +195,42 @@ void testTailleArbre() {
     delete mere;
     delete pere;
     delete enfant;
+}
+
+void testMariagePossible() {
+    cout << "-----------------------------------" << endl;
+    cout << "testMariagePossible:" << endl;
+    cout << endl;
+
+    // Création de deux personnes non apparentées
+    personne* p1 = creerPersonne("Smith", "Alice", 1990, 2, EMPTY, EMPTY, EMPTY);
+    personne* p2 = creerPersonne("Johnson", "Bob", 1988, 1, EMPTY, EMPTY, EMPTY);
+
+    // Test de la fonction testMariage
+    cout << "Test Mariage Possible entre deux personnes non apparentées:" << endl;
+    if (testMariage(p1, p2)) {
+        cout << "p1 + p2 : Succes (attendu)" << endl;
+    } else {
+        cout << "p1 + p2 : Echec (faux)" << endl;
+    }
+    cout << endl;
+
+    // Création de deux personnes apparentées
+    personne* parent = creerPersonne("Doe", "Parent", 1960, 1, EMPTY, EMPTY, EMPTY);
+    personne* enfant1 = creerPersonne("Doe", "Enfant1", 1990, 2, EMPTY, parent, EMPTY);
+    personne* enfant2 = creerPersonne("Doe", "Enfant2", 1992, 1, EMPTY, parent, EMPTY);
+
+    // Test de la fonction testMariage pour des frères et sœurs
+    cout << "Test Mariage Possible entre deux frères et sœurs:" << endl;
+    if (testMariage(enfant1, enfant2)) {
+        cout << "enfant1 + enfant2 : Succes (faux)" << endl;
+    } else {
+        cout << "enfant1 + enfant2 : Echec (attendu)" << endl;
+    }
+
+    delete p1;
+    delete p2;
+    delete parent;
+    delete enfant1;
+    delete enfant2;
 }

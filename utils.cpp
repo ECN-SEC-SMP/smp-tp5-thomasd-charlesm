@@ -96,8 +96,8 @@ bool frereEtSoeur(personne* a,personne* b)
         - Les pères des deux personnes doivent être les mêmes.
         - Les mères des deux personnes doivent être les mêmes.
     */
-    bool condition =   (a != nullptr &&
-                        b != nullptr &&
+    bool condition =   (a       != nullptr &&
+                        b       != nullptr &&
                         a->pere != nullptr &&
                         a->mere != nullptr &&
                         b->pere != nullptr &&
@@ -156,7 +156,7 @@ bool verifierAncetres(personne* p, personne* ancetre) {
  * @param p 
  * @return int 
  */
-int generation(personne* p) // d apres le TD 
+int generation(personne* p)
 
 {
     if (p != nullptr)
@@ -179,13 +179,18 @@ int generation(personne* p) // d apres le TD
  * @return true 
  * @return false 
  */
-bool testmariage(personne* a, personne* b)
+bool testMariage(personne* a, personne* b)
 {
-    bool condtion = (verifierAncetres(a,b) &&
-                    verifierAncetres(b,a)  &&
-                    !frereEtSoeur(a,b)
-    );
-    return condtion;
+    return (a != nullptr && b != nullptr &&
+            a != b &&
+            a->conjoint == nullptr &&
+            b->conjoint == nullptr &&
+            !verifierAncetres(a, b) &&
+            !verifierAncetres(b, a) &&
+            !frereEtSoeur(a, b) &&
+            ((a->mere == nullptr && a->pere == nullptr && 
+              b->mere == nullptr && b->pere == nullptr)||
+             (a->mere != b->mere && a->pere != b->pere)));
 }
 
 /**
