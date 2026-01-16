@@ -1,5 +1,6 @@
 #include "type_def.h"
 #include <iostream>
+#include <fstream>
 
 using namespace std;
 
@@ -211,4 +212,29 @@ int tailleArbre(personne* p)
     {
         return 0;
     }
+}
+
+
+
+personne* lecturePersonnes(string file)
+{
+    fstream save; // flux de sauvegarde
+    string lu;
+    save.open(file,ios::in);
+    save >> lu ;
+    save.close();
+    return p;
+}
+
+// fonction pour preparer 
+string savePersonne(personne* p,string file)
+{
+    fstream save; // flux de sauvegarde
+    save.open(file,ios::app|ios::out); // ouverture, écriture à la suite
+    save << p->id << "," 
+         << p->nom << ","
+         << p->prenom << ","
+         << p->annee_naissance << ","
+         << p->sexe << endl;
+    save.close();
 }

@@ -12,6 +12,7 @@ struct personne
     personne* conjoint;
     personne* pere;
     personne* mere;
+    int id; // ajout Q11
 };
 
 
