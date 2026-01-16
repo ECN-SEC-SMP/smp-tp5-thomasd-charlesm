@@ -13,8 +13,14 @@ using namespace std;
  * @param conjoint 
  * @return personne* 
  */
-personne* creerPersonne(string nom, string prenom, int annee_naissance, int sexe,
-                        personne* conjoint, personne* pere, personne* mere) {
+personne* creerPersonne(string nom, 
+                        string prenom, 
+                        int annee_naissance, 
+                        int sexe,
+                        personne* conjoint, 
+                        personne* pere, 
+                        personne* mere) 
+{
     personne* p = new personne;
     
     p->nom = nom;
@@ -81,7 +87,7 @@ void afficherPersonne(personne* p) {
  * @return true 
  * @return false 
  */
-bool frerresoeur(personne* a,personne* b)
+bool frereEtSoeur(personne* a,personne* b)
 {
     /* 
     Vérification des conditions pour être frères ou sœurs
@@ -90,8 +96,8 @@ bool frerresoeur(personne* a,personne* b)
         - Les pères des deux personnes doivent être les mêmes.
         - Les mères des deux personnes doivent être les mêmes.
     */
-    bool condition =   (a != nullptr &&
-                        b != nullptr &&
+    bool condition =   (a       != nullptr &&
+                        b       != nullptr &&
                         a->pere != nullptr &&
                         a->mere != nullptr &&
                         b->pere != nullptr &&
@@ -142,8 +148,15 @@ bool verifierAncetres(personne* p, personne* ancetre) {
     }
     return trouve;
 }
-/**  dd*/
-int generation(personne* p) // d apres le TD 
+/**
+ * @brief 
+ * Calcule le nombre de générations à partir d'une personne
+ * en remontant jusqu'aux ancêtres les plus éloignés.    
+ * 
+ * @param p 
+ * @return int 
+ */
+int generation(personne* p)
 
 {
     if (p != nullptr)
@@ -158,12 +171,44 @@ int generation(personne* p) // d apres le TD
     }
 }
 
-bool testmariage(personne* a, personne* b)
+/**
+ * @brief Vérifie si deux personnes peuvent se marier
+ * 
+ * @param a 
+ * @param b 
+ * @return true 
+ * @return false 
+ */
+bool testMariage(personne* a, personne* b)
 {
-    bool condtion = (verifierAncetres(a,b) &&
-                    verifierAncetres(b,a) &&
-                    !frerresoeur(a,b)
-    );
-    return condtion;
+    return (a != nullptr && b != nullptr &&
+            a != b &&
+            a->conjoint == nullptr &&
+            b->conjoint == nullptr &&
+            !verifierAncetres(a, b) &&
+            !verifierAncetres(b, a) &&
+            !frereEtSoeur(a, b) &&
+            ((a->mere == nullptr && a->pere == nullptr && 
+              b->mere == nullptr && b->pere == nullptr)||
+             (a->mere != b->mere && a->pere != b->pere)));
 }
 
+/**
+ * @brief Calcule la taille de l'arbre généalogique d'une personne
+ * 
+ * @param p 
+ * @return int 
+ */
+int tailleArbre(personne* p)
+{
+    if (p != nullptr)
+    {
+        int taillePere = tailleArbre(p->pere);
+        int tailleMere = tailleArbre(p->mere);
+        return 1 + taillePere + tailleMere;
+    }
+    else
+    {
+        return 0;
+    }
+}

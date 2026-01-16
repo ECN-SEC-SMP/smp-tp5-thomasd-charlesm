@@ -12,7 +12,6 @@ struct personne
     personne* conjoint;
     personne* pere;
     personne* mere;
-    
 };
 
 

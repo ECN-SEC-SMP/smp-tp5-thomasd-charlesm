@@ -1,11 +1,24 @@
 #pragma once
 #include "type_def.h"
 
-personne* creerPersonne(string nom, string prenom, int annee_naissance, int sexe,
-                        personne* conjoint, personne* pere, personne* mere);
+personne* creerPersonne(string nom, 
+                        string prenom, 
+                        int annee_naissance, 
+                        int sexe,
+                        personne* conjoint, 
+                        personne* pere, 
+                        personne* mere);
 
 void mariage(personne* a, personne* b);
 
 void afficherPersonne(personne* p);
 
 bool verifierAncetres(personne* p, personne* ancetre);
+
+bool frereEtSoeur(personne* a,personne* b);
+
+int generation(personne* p);
+
+bool testMariage(personne* a, personne* b);
+
+int tailleArbre(personne* p);
