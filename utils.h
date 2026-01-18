@@ -22,3 +22,5 @@ int generation(personne* p);
 bool testMariage(personne* a, personne* b);
 
 int tailleArbre(personne* p);
+
+void savePersonne(personne* p,string file);
