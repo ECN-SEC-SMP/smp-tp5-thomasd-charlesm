@@ -11,6 +11,7 @@ void testGeneration();
 void testFrereSoeur();
 void testTailleArbre();
 void testMariagePossible();
+void testSave();
 
 int main() {
     testAfficherPersonne();
@@ -20,6 +21,7 @@ int main() {
     testFrereSoeur();
     testTailleArbre();
     testMariagePossible();
+    testSave();
     return 0;
 }
 
@@ -95,6 +97,12 @@ void testAncetre (){
     delete pere;
     delete mere;
     delete enfant;
+}
+
+void testSave()
+{
+    personne* inconnu    = creerPersonne("InconnuN"  , "InconnuP" , 1900, 1, EMPTY, EMPTY     , EMPTY     );
+    savePersonne(inconnu,"testSave.txt");
 }
 
 void testFrereSoeur() {

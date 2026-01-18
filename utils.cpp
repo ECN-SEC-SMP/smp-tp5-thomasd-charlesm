@@ -221,13 +221,17 @@ personne* lecturePersonnes(string file)
     fstream save; // flux de sauvegarde
     string lu;
     save.open(file,ios::in);
-    save >> lu ;
+    save >> lu;
     save.close();
-    return p;
+
+    // conversion de fichier à
+
+    //return p;
+    return nullptr;
 }
 
 // fonction pour preparer 
-string savePersonne(personne* p,string file)
+void savePersonne(personne* p,string file)
 {
     fstream save; // flux de sauvegarde
     save.open(file,ios::app|ios::out); // ouverture, écriture à la suite
