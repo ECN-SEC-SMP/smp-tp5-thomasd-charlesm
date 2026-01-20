@@ -33,7 +33,7 @@ void testVerifierMariage() {
 
     // Effectuer le mariage
     mariage(p1, p2);
-
+ 
     // Afficher les informations des deux personnes pour vérifier le mariage
     // Le conjoint de p1 doit être p2 et vice versa
     afficherPersonne(p1);
