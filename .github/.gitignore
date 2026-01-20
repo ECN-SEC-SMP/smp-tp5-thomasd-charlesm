@@ -1,4 +1,5 @@
-results.txt
-exec
-main.o
-utils.o
+../results.txt
+../exec
+../main.o
+../utils.o
+../tests.o
